@@ -12,8 +12,8 @@ class Playlist(db.Model):
 
     # ADD THE NECESSARY CODE HERE
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.String(100))
 
 
 class Song(db.Model):

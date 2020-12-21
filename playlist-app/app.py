@@ -38,7 +38,8 @@ def show_all_playlists():
     """Return a list of playlists."""
 
     playlists = Playlist.query.all()
-    return render_template("playlists.html", playlists=playlists)
+
+    return render_template("playlists.html", playlists=playlists, playlistactive='active')
 
 
 @app.route("/playlists/<int:playlist_id>")
@@ -46,11 +47,15 @@ def show_playlist(playlist_id):
     """Show detail on specific playlist."""
 
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    playlist = Playlist.query.get_or_404(playlist_id)
+
+    return render_template('playlist.html', playlist=playlist)
 
 
 @app.route("/playlists/add", methods=["GET", "POST"])
 def add_playlist():
     """Handle add-playlist form:
+
 
     - if form not filled out or invalid: show form
     - if valid: add playlist to SQLA and redirect to list-of-playlists
@@ -68,7 +73,7 @@ def show_all_songs():
     """Show list of songs."""
 
     songs = Song.query.all()
-    return render_template("songs.html", songs=songs)
+    return render_template("songs.html", songs=songs, songactive='active')
 
 
 @app.route("/songs/<int:song_id>")
@@ -107,10 +112,10 @@ def add_song_to_playlist(playlist_id):
 
     if form.validate_on_submit():
 
-          # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+        # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
 
-          return redirect(f"/playlists/{playlist_id}")
+        return redirect(f"/playlists/{playlist_id}")
 
     return render_template("add_song_to_playlist.html",
-                             playlist=playlist,
-                             form=form)
+                           playlist=playlist,
+                           form=form)
