@@ -27,6 +27,8 @@ class Song(db.Model):
     playlists = db.relationship(
         'Playlist', secondary='playlists_songs', backref='songs')
 
+    memberships = db.relationship('PlaylistSong', backref='song')
+
 
 class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""

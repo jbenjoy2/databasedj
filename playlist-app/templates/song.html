@@ -7,10 +7,14 @@
   <p class="lead">&ndash; {{ song.artist }}</p>
 </div>
 
+{% if song.playlists %}
+<h2 class="text-info">This song is a member of the following playlists:</h2>
 <ul>
   {%for playlist in song.playlists%}
   <li><a href="/playlists/{{playlist.id}}">{{playlist.name}}</a></li>
   {% endfor %}
 </ul>
-
+{% else %}
+<p>This song is not a part of any playlist yet</p>
+{% endif %}
 {% endblock %}
