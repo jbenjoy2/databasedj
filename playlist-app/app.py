@@ -139,6 +139,7 @@ def add_song_to_playlist(playlist_id):
     # Restrict form to songs not already on this playlist
 
     curr_on_playlist = [song.id for song in playlist.songs]
+    # choices must be list of tuples- 1st is value for form submission, second is what it's labeled as)
     form.song.choices = (db.session.query(Song.id, Song.title).filter(
         Song.id.notin_(curr_on_playlist)).all())
 
