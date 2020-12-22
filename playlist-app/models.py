@@ -24,7 +24,7 @@ class Song(db.Model):
     title = db.Column(db.Text, nullable=False)
     artist = db.Column(db.Text, nullable=False, default='Unknown Artist')
 
-    playlist = db.relationship(
+    playlists = db.relationship(
         'Playlist', secondary='playlists_songs', backref='songs')
 
 

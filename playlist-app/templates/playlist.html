@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="jumbotron">
-  <h1>{{ playlist.name }}!</h1>
+  <h1>{{ playlist.name }}</h1>
   {% if playlist.description %}
   <p class="lead">{{ playlist.description }}</p>
   {% endif %}
@@ -11,7 +11,14 @@
 
 
 <div class="text-danger">
-  SHOW ALL OF THE SONGS IN THIS PLAYLIST HERE
+  {% if playlist.songs %}
+  <ul>{% for song in playlist.songs %}
+    <li><a href="/songs/{{song.id}}">{{song.title}}</a>by {{song.artist}}</li>
+  {% endfor %}
+</ul>
+  {% else %}
+    <p>NO SONGS IN THIS PLAYLIST YET</p>
+  {% endif %}
 </div>
 
 <p>
